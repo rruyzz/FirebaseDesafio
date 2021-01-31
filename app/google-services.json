@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "985852213912",
+    "project_id": "fir-desafio-59853",
+    "storage_bucket": "fir-desafio-59853.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:985852213912:android:f009911adb6f9c2dc0eeed",
+        "android_client_info": {
+          "package_name": "com.example.desafiofirebase"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "985852213912-8u4l1sck17hf8vrmguivc1j08vamtcte.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAwngCEWyfENZlj8m29OEw4N-sLDl_JKro"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "985852213912-8u4l1sck17hf8vrmguivc1j08vamtcte.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

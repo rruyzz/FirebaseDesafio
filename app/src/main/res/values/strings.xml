@@ -1,0 +1,14 @@
+<resources>
+    <string name="app_name">DesafioFirebase</string>
+    <string name="email">Email</string>
+    <string name="password">Password</string>
+    <string name="remember">Remember</string>
+    <string name="login">Log in</string>
+    <string name="createCount">Create account</string>
+    <string name="name">Nome</string>
+    <string name="repeatepassword">Repeate Password</string>
+    <string name="createaccount">Create Account</string>
+    <string name="created">Created at</string>
+    <string name="description">Description</string>
+    <string name="savegame">Save Game</string>
+</resources>
