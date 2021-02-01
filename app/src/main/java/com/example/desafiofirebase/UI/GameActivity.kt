@@ -18,11 +18,11 @@ class GameActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-//        setContentView(R.layout.activity_games_detail)
+
 
         bind = ActivityGameBinding.inflate(layoutInflater)
 
-//        checkInfo()
+
 
         val games = intent.getSerializableExtra("game") as? Game
 
