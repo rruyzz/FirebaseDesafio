@@ -9,7 +9,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.DesafioFirebase">
-        <activity android:name=".UI.EditActivity"></activity>
+        <activity android:name=".UI.EditaActivity"></activity>
+        <activity android:name=".UI.EditActivity" />
         <activity android:name=".UI.GameActivity" />
         <activity android:name=".UI.AdicionarActivity" />
         <activity android:name=".UI.CadastroActivity" />

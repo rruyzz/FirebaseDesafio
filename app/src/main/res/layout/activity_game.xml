@@ -18,7 +18,7 @@
             android:layout_height="wrap_content">
 
             <ImageView
-                android:id="@+id/imgGameLarge"
+                android:id="@+id/imgGameBack"
                 android:layout_width="match_parent"
                 android:layout_height="300dp"
                 android:scaleType="fitXY"
@@ -94,8 +94,9 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="20dp"
             android:textColor="@color/gray_dark"
-            android:paddingHorizontal="10dp"
-            android:text="@tools:sample/lorem/random" />
+            android:paddingHorizontal="10dp"/>
+<!--            android:text="@tools:sample/lorem/random" />-->
+
 
     </LinearLayout>
 

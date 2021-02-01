@@ -1,12 +1,11 @@
 package com.example.desafiofirebase.UI
 
-import android.os.Parcelable
-import kotlinx.android.parcel.Parcelize
+import java.io.Serializable
 
-class Game(
-    val id: Int?,
-    val name: String,
-    val data: String,
-    val description: String,
-    val image: String
-) 
+data class Game(
+    var name: String = "",
+    var data: String = "",
+    var description: String = "",
+    var image: String = "",
+    var id: String = ""
+) : Serializable

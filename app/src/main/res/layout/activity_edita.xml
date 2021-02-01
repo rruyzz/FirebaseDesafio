@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".UI.CadastroActivity">
+    tools:context=".UI.EditaActivity">
     <FrameLayout
         android:id="@+id/frameLayout"
         android:layout_width="wrap_content"
@@ -37,7 +37,7 @@
         app:layout_constraintTop_toTopOf="@+id/frameLayout">
 
         <com.google.android.material.floatingactionbutton.FloatingActionButton
-            android:id="@+id/btnAddImage"
+            android:id="@+id/btnAddEdtImage"
             android:layout_width="160dp"
             android:layout_height="160dp"
             android:layout_marginBottom="-80dp"
@@ -58,7 +58,7 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent">
             <include
-                android:id="@+id/include_cadastro_games"
+                android:id="@+id/include_edita_games"
                 layout="@layout/body_adicionar_cadastro"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
@@ -67,8 +67,5 @@
 
         </com.google.android.material.card.MaterialCardView>
     </LinearLayout>
-
-
-
 
 </androidx.constraintlayout.widget.ConstraintLayout>

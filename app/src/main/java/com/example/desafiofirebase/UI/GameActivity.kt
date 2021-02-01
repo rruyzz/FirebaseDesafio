@@ -4,30 +4,57 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.TextView
+import android.widget.Toast
 import com.example.desafiofirebase.R
+import com.example.desafiofirebase.databinding.ActivityGameBinding
+import com.squareup.picasso.Picasso
 import kotlinx.android.synthetic.main.activity_game.*
 
 class GameActivity : AppCompatActivity() {
+    private lateinit var bind: ActivityGameBinding
+
+    private var gameInfo: Game = Game()
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_game)
+//        setContentView(R.layout.activity_games_detail)
 
-        val title = intent.getStringExtra("Title")
-        val descritpion = intent.getStringExtra("Description")
-        val date = intent.getStringExtra("Year")
+        bind = ActivityGameBinding.inflate(layoutInflater)
 
+//        checkInfo()
 
-        tvTitle.text = title
-        tvDescription.text = descritpion
-        txtName.text = title
-        txtYear.text = date
+        val games = intent.getSerializableExtra("game") as? Game
 
-        btnBack.setOnClickListener{
-            val intent = Intent(this, MainActivity::class.java)
-            startActivity(intent)
+        if(games != null){
+            gameInfo = games
+            updateGamesInfo(gameInfo)
+        }else{
+            Toast.makeText(this, "Não foi possível carregar suas as informações! :(", Toast.LENGTH_SHORT).show()
+            finish()
+        }
+        bind.btnBack.setOnClickListener {
+            finish()
         }
 
+        bind.btnEdit.setOnClickListener {
+            val intent = Intent(this, EditaActivity::class.java)
+            intent.putExtra("game", gameInfo)
+            startActivity(intent)
+            finish()
+        }
 
+        setContentView(bind.root)
+    }
+
+
+    private fun updateGamesInfo(gamesInfo: Game){
+
+        bind.txtName.text = gamesInfo.name
+        bind.tvTitle.text = gamesInfo.name
+        bind.txtYear.text = gamesInfo.data
+        bind.tvDescription.text = gamesInfo.description
+
+        Picasso.get().load(gamesInfo.image).into(bind.imgGameBack)
 
 
     }
