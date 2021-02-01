@@ -19,10 +19,10 @@ class MainAdapter(private val listGame: ArrayList<Game>, val listener: MainActiv
     }
 
     override fun onBindViewHolder(holder: GameAdapterViewHolder, position: Int) {
-        val currentItem: Game = listGame[position]
+        val currentItem = listGame[position]
 
-        holder.gameTitle.setText(currentItem.name)
-        holder.gameYear.setText(currentItem.data)
+        holder.gameTitle.text = currentItem.name
+        holder.gameYear.text = currentItem.data
 
 
         Picasso.get().load(currentItem.image).into(holder.gameImage)

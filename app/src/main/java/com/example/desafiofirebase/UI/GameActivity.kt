@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.TextView
 import android.widget.Toast
+import com.bumptech.glide.Glide
 import com.example.desafiofirebase.R
 import com.example.desafiofirebase.databinding.ActivityGameBinding
 import com.squareup.picasso.Picasso
@@ -54,8 +55,10 @@ class GameActivity : AppCompatActivity() {
         bind.txtYear.text = gamesInfo.data
         bind.tvDescription.text = gamesInfo.description
 
-        Picasso.get().load(gamesInfo.image).into(bind.imgGameBack)
-
+//        Picasso.get().load(gamesInfo.image).into(bind.imgGameBack)
+        Glide.with(this)
+            .load(gamesInfo.image)
+            .into(bind.imgGameBack)
 
     }
 }

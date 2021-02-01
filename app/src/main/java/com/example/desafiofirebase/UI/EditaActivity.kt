@@ -7,6 +7,7 @@ import android.util.Log
 import android.widget.Toast
 import com.example.desafiofirebase.R
 import com.example.desafiofirebase.databinding.ActivityEditaBinding
+import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.storage.FirebaseStorage
 import com.google.firebase.storage.StorageReference
@@ -21,41 +22,32 @@ class EditaActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-//        setContentView(R.layout.activity_edita_game_cadastro)
 
         bind = ActivityEditaBinding.inflate(layoutInflater)
 
         checkInfo()
 
-
         bind.includeEditaGames.btnSaveGame.setOnClickListener {
             if (gameinfo != null) {
-                saveInfo(newGamesInfo(gameinfo))
-                showMsg("Informações atualizadas :)")
+                save(newGamesInfo(gameinfo))
                 finish()
             }else{
-                showMsg("Não foi possivel atualizar :(")
                 finish()
             }
         }
-
         bind.btnAddEdtImage.setOnClickListener {
-            getPicture()
+            catchPicture()
         }
-
-
         setContentView(bind.root)
     }
 
     private fun checkInfo(){
-        val g = intent.getSerializableExtra("game") as? Game
+        val game = intent.getSerializableExtra("game") as? Game
 
-        if (g != null){
-            gameinfo = g
-
+        if (game != null){
+            gameinfo = game
             setInfo(gameinfo)
         }else{
-            showMsg("Não deu para carregar suas informações !")
             finish()
         }
     }
@@ -68,8 +60,10 @@ class EditaActivity : AppCompatActivity() {
         Picasso.get().load(gamesInfo.image).into(bind.btnAddEdtImage)
     }
 
-    private fun saveInfo(gamesInfo: Game){
+    private fun save(gamesInfo: Game){
         val db = FirebaseFirestore.getInstance().collection("Games")
+        val ref = FirebaseDatabase.getInstance().getReference("/games/"  )
+        ref.child(gamesInfo.id).setValue(gameinfo)
         db.document(gamesInfo.id).set(gamesInfo)
     }
 
@@ -80,25 +74,24 @@ class EditaActivity : AppCompatActivity() {
         return Game(name,data, description,game.image, game.id)
     }
 
-    private fun getPicture() {
+    private fun catchPicture() {
         storage = FirebaseStorage.getInstance().getReference(getUniqueId())
         val intent = Intent()
         intent.type = "image/"
-        intent.action = Intent.ACTION_GET_CONTENT
-        startActivityForResult(Intent.createChooser(intent, "Captura Imagem"), 0)
+        intent.action = Intent.ACTION_PICK
+        startActivityForResult(Intent.createChooser(intent, "Catch Imagem"), 1000)
     }
 
-    private fun getUniqueId() = FirebaseFirestore.getInstance().collection("Chave").document().id
+    private fun getUniqueId() = FirebaseFirestore.getInstance().collection("key").document().id
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
 
-        if (requestCode == 0) {
-
+        if (requestCode == 1000) {
             val upFile = storage.putFile(data!!.data!!)
             upFile.continueWithTask { task ->
                 if (task.isSuccessful) {
-                    showMsg("Imagem Carregada !!!")
+                    Toast.makeText(this, "Imagem carregada", Toast.LENGTH_SHORT).show()
                 }
                 storage!!.downloadUrl
             }.addOnCompleteListener { task ->
@@ -106,15 +99,10 @@ class EditaActivity : AppCompatActivity() {
                     val downloadUri = task.result
                     val url = downloadUri!!.toString()
                         .substring(0, downloadUri.toString().indexOf("&token"))
-                    Log.i("URL da Imagem", url)
                     gameinfo.image = url
                     Picasso.get().load(url).into(bind.btnAddEdtImage)
                 }
             }
         }
-    }
-
-    private fun showMsg(msg: String) {
-        Toast.makeText(this, msg, Toast.LENGTH_SHORT).show()
     }
 }
